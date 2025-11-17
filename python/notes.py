@@ -7,19 +7,37 @@ def help_mesg():
     help_string = "Here to help"
     print(help_string)
 
-def create_note():
+def list_files():
+    #get all the filenames from the CWD & print them out
+    #get only .note files, list comprehension, create a new list called notes
+    files = os.listdir('.')
+    notes = [f for f in files if f.endswith('.note')]
 
-def list_notes():
-    #get all the filenames from the CWD
-    #print them out
-    print("All Note Files")
+    for note in notes:
+        print(note)
 
 def specific_tag_notes():
     pass
 
 def read_note(n):
     #why the n?
-    pass
+    with open(f"{n}.note", "r") as f:
+        content = f.read()
+        print(content)
+
+def collect_note_from_user():
+    noteid = input("Enter note id: ")
+    notetext = input("Enter note text: ")
+    return noteid, notetext
+
+def create_note():
+    noteid, notetext = collect_note_from_user
+    save_note(noteid, notetext)
+    print(f"Note {noteid} saved.")
+
+def save_note(n,t):
+    with open(f"{n}.note", "w") as f:
+        f.write(t)
 
 def edit_note():
     pass
@@ -41,7 +59,7 @@ def main():
         elif cmd == 'create':
             create_note()
         elif cmd == 'list':
-            list_notes
+            list_files()
         elif cmd == 'tag':
             specific_tag_notes()
         elif cmd == 'read':
