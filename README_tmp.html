@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="future-proof">future-proof</h1>
+<h1 id="build-a-personal-notes-manager">Build a Personal Notes Manager</h1>
+<p>A multi-phase educational project for managing personal notes with structured metadata.</p>
+<p>It is also the first time we consider the idea of <strong>future-proof</strong> software.</p>
+<h2 id="overview">Overview</h2>
+<p>Personal Notes Manager is a text-based note-taking system that stores notes as UTF-8 text files with YAML headers for metadata. This project serves as an educational tool for students to learn file manipulation, parsing, and progressively more advanced application architectures.</p>
+<p>https://zcw.guru/kristofer/javapygitignore</p>
+<h2 id="future-proof-software">Future-Proof software</h2>
+<p>&quot;Future-proof&quot; software is code designed to remain useful, maintainable, and adaptable as technology evolves and requirements change over time. Think of it like building a house with a strong foundation that can support renovations and additions years later.</p>
+<p><strong>Why future-proofing matters:</strong>
+When you write software, you're not just solving today's problem - you're creating something that will likely need to change. User needs evolve, new technologies emerge, and business requirements shift. Future-proof code makes these inevitable changes easier and less expensive.</p>
+<p><strong>Key principles for future-proof software:</strong></p>
+<p><strong>Modularity and separation of concerns</strong> - Break your code into distinct, focused pieces that do one thing well. If you need to change how data is stored, you shouldn't have to rewrite your user interface code too. If you store your notes in text files now, but a database in the next version, how do you make sure you can move amongst different storage tech?</p>
+<p><strong>Use established standards and conventions</strong> - Following widely-adopted patterns means other developers can understand your code, and it's more likely to work well with future tools and libraries. And text files, based on <em>UNICODE</em>, is one of the most well-respected storage modalities. (So is <em>Sqlite3</em>, see <a href="https://www.loc.gov/preservation/resources/rfs/data.html">Library of Congress; Recommended Formats Statement</a>)</p>
+<p><strong>Avoid hard-coding values</strong> - Instead of writing <code>if (users.length &gt; 100)</code>, use a configurable constant like <code>if (users.length &gt; MAX_USERS)</code>. This makes it easy to adjust limits without hunting through code. These items can be kept together, so that they can be reviewed and changed as needed in Future YEARS.</p>
+<p><strong>Choose stable, well-supported technologies</strong> - While it's tempting to use the newest framework, <em>mature technologies</em> with strong communities tend to have better long-term support.</p>
+<p><strong>Write clear documentation and tests</strong> - Future you (or other developers) will thank you when they need to modify code written months or years ago. So, <strong>unit tests</strong> and <em>test-driven development</em> is a critical part of this project. Test early and often. And make sure your <em>Future You</em> knows how to run the test and read the comments and PLAN and SPEC documents.</p>
+<p>The goal isn't to predict the future perfectly, but to write code that bends rather than breaks when change inevitably comes. It's about making smart trade-offs between solving immediate needs and maintaining flexibility for tomorrow's challenges.</p>
+<h2 id="project-phases">Project Phases</h2>
+<p>This project is designed to be implemented in three distinct phases:</p>
+<h3 id="phase-1-command-line-interface-cli">Phase 1: Command Line Interface (CLI)</h3>
+<ul>
+<li>Basic note creation, reading, updating, and deletion via command line</li>
+<li>YAML header parsing and manipulation</li>
+<li>Note searching and filtering capabilities</li>
+<li>Simple formatting options</li>
+</ul>
+<h3 id="phase-2-graphical-user-interface-gui">Phase 2: Graphical User Interface (GUI)</h3>
+<ul>
+<li>Desktop application with intuitive UI</li>
+<li>Rich text editing features</li>
+<li>Visual organization of notes (folders/tags)</li>
+<li>Enhanced search functionality with highlighting</li>
+<li>Export options (PDF, HTML, etc.)</li>
+</ul>
+<h3 id="phase-3-rest-server-with-javascript-frontend">Phase 3: REST Server with JavaScript Frontend</h3>
+<ul>
+<li>Web-based access to notes</li>
+<li>Multi-user support with authentication</li>
+<li>Real-time collaborative editing</li>
+<li>Mobile-responsive design</li>
+<li>API documentation for potential extensions</li>
+</ul>
+<h2 id="file-structure">File Structure</h2>
+<p>Notes are stored as plain text files with a <code>.note</code> extension (or any extension you prefer). Each note follows this structure:</p>
+<pre class="hljs"><code><div>---
+title: My Example Note
+created: 2025-05-20T10:30:00Z
+modified: 2025-05-20T10:45:00Z
+tags: [example, documentation]
+---
+
+This is the content of my note.
+It can contain multiple paragraphs and basic formatting.
+
+You can include lists:
+- Item 1
+- Item 2
+- Item 3
+
+And other simple markdown markup as needed.
+</div></code></pre>
+<h2 id="yaml-header-specification">YAML Header Specification</h2>
+<p>The YAML header is delimited by triple dashes (<code>---</code>) and contains metadata about the note:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>title</td>
+<td>The title of the note</td>
+<td>String</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>created</td>
+<td>Creation timestamp (ISO 8601)</td>
+<td>DateTime</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>modified</td>
+<td>Last modification timestamp (ISO 8601)</td>
+<td>DateTime</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>Categories or labels for the note</td>
+<td>Array of Strings</td>
+<td>No</td>
+</tr>
+<tr>
+<td>author</td>
+<td>Creator of the note</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Completion or review status</td>
+<td>String</td>
+<td>No</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>Importance level</td>
+<td>Integer (1-5)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Additional custom fields can be added as needed.</p>
+<p>There a few sample note files in <a href="./test-notes">test-notes/</a></p>
+<h2 id="phase-1-cli-implementation">Phase 1: CLI Implementation</h2>
+<h3 id="command-reference">Command Reference</h3>
+<pre class="hljs"><code><div>notes --help                     # Display help information
+notes create                     # Create a new note (opens in default editor)
+notes list                       # List all notes
+notes list --tag &quot;coursework&quot;    # List notes with specific tag
+notes read &lt;note-id&gt;             # Display a specific note
+notes edit &lt;note-id&gt;             # Edit a specific note
+notes delete &lt;note-id&gt;           # Delete a specific note
+notes search &quot;query&quot;             # Search notes for text (title, tags, content)
+notes stats                      # Display statistics about your notes
+</div></code></pre>
+<h3 id="technical-requirements">Technical Requirements</h3>
+<ul>
+<li>Java 11+ or Python 3.11+</li>
+<li>YAML parser library</li>
+<li>Filesystem access &amp; manipulation</li>
+<li>Text editor integration (nano?)</li>
+<li>Extra Credit: github integration for the notes storage</li>
+<li>Extra Credit: note encryption (and key management)</li>
+</ul>
+<h2 id="phase-2-gui-implementation">Phase 2: GUI Implementation</h2>
+<p>Maybe this week, maybe next time we come back around to this project.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>Note browser panel (folder structure or tag-based)</li>
+<li>Rich text editor with markdown support</li>
+<li>Real-time preview</li>
+<li>Drag and drop organization</li>
+<li>Dark/light theme options</li>
+<li>Backup and restore functionality</li>
+</ul>
+<h3 id="technical-requirements">Technical Requirements</h3>
+<ul>
+<li>Java Swing or TKinter</li>
+<li>HTML/CSS for UI (if using web technologies)</li>
+<li>Local storage management</li>
+<li>Cross-platform compatibility</li>
+</ul>
+<h2 id="phase-3-rest-server-implementation">Phase 3: REST Server Implementation</h2>
+<p>Maybe instead of Phase 2? Maybe this week, maybe in the future.</p>
+<p>What is this stuff anyway? Well, Ask your friendly, globe-girdling AI.</p>
+<h3 id="api-endpoints">API Endpoints</h3>
+<pre class="hljs"><code><div>GET    /api/notes                # List all notes
+POST   /api/notes                # Create a new note
+GET    /api/notes/:id            # Retrieve a specific note
+PUT    /api/notes/:id            # Update a specific note
+DELETE /api/notes/:id            # Delete a specific note
+GET    /api/tags                 # List all tags
+GET    /api/notes/tag/:tagid          # List all notes with tag tagid
+GET    /api/search?q=query       # Search notes
+</div></code></pre>
+<h3 id="technical-requirements">Technical Requirements</h3>
+<ul>
+<li>Express.js/Flask/Django REST framework (python)</li>
+<li>Spring/Springboot</li>
+<li><strong>Frontend:</strong> VanillaJS (first)</li>
+<li>Frontend: React/Vue/Angular?</li>
+<li>Authentication system (don't want just anyone reading your notes)</li>
+<li>Database integration (optional, should still use file system)</li>
+<li>API documentation (Swagger/OpenAPI)</li>
+</ul>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<p>Students will gain experience with:</p>
+<ol>
+<li>File I/O operations</li>
+<li>Data parsing and validation</li>
+<li>Command-line argument processing</li>
+<li>User interface design principles</li>
+<li>Client-server architecture</li>
+<li>REST API development</li>
+<li>Frontend-backend integration</li>
+<li>Project planning and progressive enhancement</li>
+</ol>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>[List required software/libraries]</li>
+<li>Basic understanding of Java or Python</li>
+<li>Knowledge of [relevant concepts]</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Clone the repository</span>
+<span class="hljs-comment"># CHOOSE your Project's Name NOW.... _don't use future-proof_.</span>
+git <span class="hljs-built_in">clone</span> https://github.com/yourusername/future-proof.git
+
+<span class="hljs-comment"># Navigate to the project directory or whatever you named it in the clone.</span>
+<span class="hljs-built_in">cd</span> `yournotesnamehere`
+
+<span class="hljs-comment"># Install dependencies</span>
+(<span class="hljs-keyword">if</span> you need them)
+
+<span class="hljs-comment"># Run the application</span>
+run.sh
+</div></code></pre>
+<h2 id="contributing">Contributing</h2>
+<p>This project is designed for educational purposes. Students are encouraged to:</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Implement their assigned component</li>
+<li>Submit a pull request for review</li>
+</ol>
+<h2 id="license">License</h2>
+<p>[MIT license]</p>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<ul>
+<li>Every amazing personal notes project out there.</li>
+<li>Unix file system. Without it, we'd be sunk.</li>
+<li>Markdown: the way techies write.</li>
+</ul>
+<h2 id="possible-project-names">Possible Project Names</h2>
+<p>Possible Names for your version of this project (or make up your own!)</p>
+<p>NoteNexus
+MindScribe
+ThoughtVault
+StudyStream
+MemoPad Pro
+BrainWave Notes
+Scholarly Jotter
+InsightKeeper
+Knowledge Capsule
+NoteCraft
+MindMapper
+StudyPulse
+ThoughtHub
+NoteWorthy
+IdeaTracker
+StudySync
+RecallPro
+ClassCompass
+MindfulNotes
+LearnLogger</p>
+<h2 id="but-i-wanna-do-a-databse-%22now%22">But I wanna do a databse &quot;NOW!!!&quot;</h2>
+<p><strong>Why Build Your Note-Taking App with the Filesystem?</strong></p>
+<p>Using the filesystem instead of a database or cloud service for your note-taking app isn't just a simpler starting point—it's a masterclass in fundamental programming concepts that every developer needs to understand.</p>
+<p><strong>You're learning the foundation underneath everything</strong></p>
+<p>Every piece of software ultimately interacts with files. Databases? They store data in files. Web servers? They serve files. Cloud applications? They manage files across distributed systems. By working directly with the filesystem, you're learning the bedrock skills that power everything else.</p>
+<p><strong>Essential skills you'll develop:</strong></p>
+<p><strong>File I/O operations</strong> - You'll master reading from and writing to files, which is core to virtually every application. Whether you're processing configuration files, importing data, or generating reports, these skills transfer everywhere.</p>
+<p><strong>Data serialization and parsing</strong> - Converting your note objects into text (JSON, Markdown, XML) and back again teaches you how data moves between memory and storage. This same concept applies when sending data over networks or saving user preferences.</p>
+<p><strong>Directory structure and organization</strong> - Deciding how to organize notes (by date? by topic? in nested folders?) teaches you about data modeling and hierarchical thinking. These concepts directly apply to database design, URL routing in web apps, and organizing any complex system.</p>
+<p><strong>Error handling and edge cases</strong> - What happens when a file is corrupted? When the disk is full? When two processes try to write the same file? Filesystem programming forces you to think about real-world failure scenarios.</p>
+<p><strong>Performance considerations</strong> - You'll discover why reading one large file might be faster than many small ones, or why scanning hundreds of files can be slow. These insights apply to database queries, API calls, and system optimization everywhere.</p>
+<p><strong>Practical examples from your note-taking app:</strong></p>
+<p><strong>File naming and collision handling</strong> - When a user creates two notes with the same title, how do you handle it? Do you append timestamps? Create numbered versions? This teaches you about unique identifiers and conflict resolution.</p>
+<p><strong>Incremental loading</strong> - If you have thousands of notes, you can't load them all into memory. You'll learn to read file lists, load metadata first, and fetch full content on demand—the same patterns used in web pagination and lazy loading.</p>
+<p><strong>Search without databases</strong> - Building search functionality by scanning files teaches you about indexing, text processing, and performance trade-offs. Later, when you use a database, you'll understand what it's doing behind the scenes.</p>
+<p><strong>Backup and versioning</strong> - How do you prevent data loss? How do you track changes? You might implement simple versioning by copying files or creating timestamps, learning the concepts behind version control systems.</p>
+<p><strong>Cross-platform compatibility</strong> - Different operating systems handle file paths differently. Learning to work with <code>/</code> vs <code>\</code> separators and absolute vs relative paths teaches you about portability and system-level programming.</p>
+<p><strong>The learning progression:</strong></p>
+<p>You'll start simple—just saving text to a file. Then you'll want better organization, so you'll create folders. Then you'll want metadata, so you'll learn JSON. Then you'll want search, so you'll read multiple files efficiently. Each step builds naturally on the last.</p>
+<p><strong>Why this beats starting with a database:</strong></p>
+<p>Databases hide complexity behind convenient APIs. While that's great for building applications quickly, it means you miss fundamental concepts about how data is actually stored and retrieved. When you eventually use databases (and you will), you'll understand the problems they're solving because you've faced those problems yourself.</p>
+<p><strong>Real-world relevance:</strong></p>
+<p>Many successful applications started as filesystem-based tools. Git manages millions of files efficiently. Static site generators like Jekyll process thousands of markdown files. Log analysis tools parse massive text files. Configuration management systems organize files across servers.</p>
+<p><strong>Skills that transfer everywhere:</strong></p>
+<p>The file handling patterns you learn will apply when you're processing CSV data, managing configuration files, building deployment scripts, or working with any system that stores and retrieves information. You're not just building a note-taking app—you're learning to think like a systems programmer.</p>
+<p>Starting with the filesystem gives you a deep understanding of how computers actually work with data. It's messier and more complex than using a database, but that complexity teaches you invaluable problem-solving skills. Every challenge you solve—from handling concurrent access to organizing large amounts of data—prepares you for the real-world complexities you'll face as a professional developer.</p>
+<h2 id="ahem-about-that-test-driven-development-thingie">Ahem, about that Test-Driven Development thingie</h2>
+<p><strong>What is Test-Driven Development (TDD)?</strong></p>
+<p>Test-Driven Development is a programming approach where you write tests <em>before</em> writing the actual code. It follows a simple cycle called &quot;Red-Green-Refactor&quot;:</p>
+<ol>
+<li><strong>Red</strong>: Write a failing test that describes what you want your code to do</li>
+<li><strong>Green</strong>: Write the minimal code needed to make that test pass</li>
+<li><strong>Refactor</strong>: Clean up and improve the code while keeping tests passing</li>
+</ol>
+<p>Think of it like writing a recipe backwards - you first describe what the finished dish should taste like, then figure out how to cook it.</p>
+<p><strong>Why beginners should embrace TDD:</strong></p>
+<p><strong>Clarifies your thinking</strong> - Writing tests first forces you to think through exactly what your function should do before you get lost in implementation details. It's like sketching before painting.</p>
+<p><strong>Catches bugs early</strong> - Tests act as a safety net. When you change code later, your tests immediately tell you if you broke something that was previously working.</p>
+<p><strong>Improves code design</strong> - Code that's easy to test tends to be well-organized and modular. TDD naturally pushes you toward better architecture.</p>
+<p><strong>Builds confidence</strong> - You can refactor and improve your code fearlessly, knowing your tests will catch any mistakes.</p>
+<p><strong>Serves as documentation</strong> - Good tests show other developers (including future you) how your code is supposed to work.</p>
+<p><strong>Need to Make Sure</strong> - There are 3-4 test <em>For Every Method!!!</em> Lots o'tests, many, many tests. So Many Tests!!</p>
+<p><strong>How to do TDD:</strong></p>
+<p>These test examples are in <strong>JavaScript</strong>, so use them only as conceptual examples.
+You will write this app in either Java or Python, and use the standard filesystem (using text files as your data format) for your <em>storage infrastructure</em>.
+Someday soon, you may get the chance (or motivation) to store the notes in a database of some kind, but for now, text files.</p>
+<p>Let's say you're building a function to validate note titles. Here's the TDD process:</p>
+<p><strong>Step 1 (Red)</strong>: Write a failing test</p>
+<pre class="hljs"><code><div>test(<span class="hljs-string">'should reject empty note titles'</span>, () =&gt; {
+  expect(validateNoteTitle(<span class="hljs-string">''</span>)).toBe(<span class="hljs-literal">false</span>);
+});
+</div></code></pre>
+<p><strong>Step 2 (Green)</strong>: Write minimal code to pass</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateNoteTitle</span>(<span class="hljs-params">title</span>) </span>{
+  <span class="hljs-keyword">return</span> title !== <span class="hljs-string">''</span>;
+}
+</div></code></pre>
+<p><strong>Step 3 (Refactor)</strong>: Improve while keeping tests green</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateNoteTitle</span>(<span class="hljs-params">title</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> title === <span class="hljs-string">'string'</span> &amp;&amp; title.trim().length &gt; <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<p>Then repeat: add more tests for edge cases, implement features incrementally.
+<strong>Start small, with a tiny core of functionality.</strong>
+And then <em>build outwards</em>, add capabilities (and TESTs Tests tests) as you go!</p>
+<p><strong>TDD in your note-taking CLI application:</strong></p>
+<p>Here are specific areas where TDD would be valuable:</p>
+<p><strong>Note creation and validation</strong></p>
+<ul>
+<li>Test that notes require titles</li>
+<li>Test that notes can have optional tags</li>
+<li>Test that duplicate titles are handled appropriately</li>
+<li>Test that special characters in titles are escaped properly</li>
+</ul>
+<p><strong>Search functionality</strong></p>
+<ul>
+<li>Test searching by keywords finds correct notes</li>
+<li>Test case-insensitive search works</li>
+<li>Test searching with multiple tags</li>
+<li>Test handling of search terms with special characters</li>
+</ul>
+<p><strong>File operations</strong></p>
+<ul>
+<li>Test that notes are saved to the correct file format</li>
+<li>Test that corrupted files are handled gracefully</li>
+<li>Test that backup creation works</li>
+<li>Test that notes can be exported to different formats</li>
+</ul>
+<p><strong>Command parsing</strong></p>
+<ul>
+<li>Test that CLI commands are parsed correctly (<code>add</code>, <code>search</code>, <code>delete</code>)</li>
+<li>Test that invalid commands show helpful error messages</li>
+<li>Test that command flags work as expected (<code>--tag</code>, <code>--date</code>)</li>
+</ul>
+<p><strong>Example TDD workflow for your CLI app:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Test first</span>
+test(<span class="hljs-string">'should create note with title and content'</span>, () =&gt; {
+  <span class="hljs-keyword">const</span> note = createNote(<span class="hljs-string">'My First Note'</span>, <span class="hljs-string">'This is the content'</span>);
+  expect(note.title).toBe(<span class="hljs-string">'My First Note'</span>);
+  expect(note.content).toBe(<span class="hljs-string">'This is the content'</span>);
+  expect(note.createdAt).toBeInstanceOf(<span class="hljs-built_in">Date</span>);
+});
+
+<span class="hljs-comment">// Then implement</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createNote</span>(<span class="hljs-params">title, content</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">title</span>: title,
+    <span class="hljs-attr">content</span>: content,
+    <span class="hljs-attr">createdAt</span>: <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(),
+    <span class="hljs-attr">id</span>: generateId()
+  };
+}
+</div></code></pre>
+<p><strong>Getting started:</strong></p>
+<ol>
+<li>Choose a testing framework (<code>junit</code> for Java, <code>pytest</code> and/or <code>unittest</code> for Python, etc.)</li>
+<li>Start with simple, pure functions (like validation, method correctness or formatting)</li>
+<li>Write one test, make it pass, then add another</li>
+<li>Don't try to test everything at once - build up gradually</li>
+</ol>
+<p>TDD might feel slow initially, but it pays huge dividends as your application grows.
+You'll spend less time debugging mysterious bugs and more time confidently adding new features.
+For a personal project like this note-taking app, it also helps you think through the user experience before getting caught up in implementation details.</p>
+<h2 id="finally">Finally</h2>
+<p><em>Why does choosing to use text files in a standard directory structure using Markdown as a note format, make the project &quot;future proof&quot;?</em></p>
+<p>Using text files in a standard directory structure with Markdown as a note format makes a project &quot;future proof&quot; for several compelling reasons:</p>
+<p><strong>Universal Compatibility</strong></p>
+<ul>
+<li>Plain text files (.txt, .md) are readable by virtually any operating system and text editor, eliminating dependency on proprietary software</li>
+<li>UTF-8 encoding ensures support for multiple languages and special characters across all modern systems</li>
+</ul>
+<p><strong>Longevity and Stability</strong></p>
+<ul>
+<li>Text files have remained a stable format for decades and will likely be readable for decades to come</li>
+<li>Unlike proprietary formats that can become obsolete when companies discontinue support</li>
+</ul>
+<p><strong>Version Control Friendly</strong></p>
+<ul>
+<li>Text files integrate seamlessly with version control systems like Git</li>
+<li>Changes can be tracked line by line, enabling precise collaboration and history tracking</li>
+</ul>
+<p><strong>Portable and Accessible</strong></p>
+<ul>
+<li>Files can be easily transferred between devices and platforms</li>
+<li>Low storage requirements compared to binary formats</li>
+</ul>
+<p><strong>Human Readable</strong></p>
+<ul>
+<li>Content remains accessible without specialized software</li>
+<li>Even if the application becomes obsolete, notes remain directly readable</li>
+</ul>
+<p><strong>Open Standards</strong></p>
+<ul>
+<li>Markdown is an open specification with wide industry support</li>
+<li>Not controlled by a single entity that could change or abandon the format</li>
+</ul>
+<p><strong>Flexibility and Extensibility</strong></p>
+<ul>
+<li>Directory structures can be organized according to user preference</li>
+<li>Metadata in YAML headers can evolve over time without breaking backward compatibility</li>
+<li>New features can be added without rendering old files unusable</li>
+</ul>
+<p><strong>Searchable</strong></p>
+<ul>
+<li>Plain text is easily searchable using standard system tools or simple scripts</li>
+<li>No need for specialized databases that might become obsolete</li>
+</ul>
+<p><strong>Data Sovereignty</strong></p>
+<ul>
+<li>Users maintain complete control over their data</li>
+<li>No dependence on cloud services that may change terms or shut down</li>
+</ul>
+<p><strong>Resilient Against Software Evolution</strong></p>
+<ul>
+<li>Even as the application evolves through its three phases (CLI → GUI → web), the underlying data format remains consistent</li>
+<li>Allows for migration to newer systems without data loss</li>
+</ul>
+<p>This approach creates a foundation that can withstand technological change, ensuring that notes remain accessible regardless of future software and hardware developments.</p>
+
+</body>
+</html>
