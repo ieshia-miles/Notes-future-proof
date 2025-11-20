@@ -7,8 +7,9 @@ Directory Structure:
 
 Notes-future-proof (Home Directory)
 -python(source folder)
-    - __init__.py
-    - main.py
+
+- __init__.py
+- main.py
     - notes (core note functionality - methods for note commands(cmd))
         - __init__.py
     - utils (helper functions)
