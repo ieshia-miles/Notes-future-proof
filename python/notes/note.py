@@ -1,20 +1,23 @@
-class note:
-    def __init__:
-    pass
+class Note:
+    def __init__(self, note_id, title, body, tages=None):
+        self.note_id = note_id
+        self.title = title
+        self.body = body
+        self.tags = tags or []
 
-    def create_note(self):
+    def edit(self):
         pass
 
-    def edit_note(self):
+    def save(self):
         pass
 
-    def save_note(self):
-        pass
-
-    def read_note(self):
-        pass
-
-    def delete_note(self):
+    def delete(self):
         pass
 
 
+
+"""
+The Note object should only handle responsibilities of a single note
+(edit itself, save itself, delete itself). A book does not "find" itself
+on the shelf, or create itself.
+"""
