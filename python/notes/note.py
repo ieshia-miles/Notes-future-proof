@@ -1,9 +1,10 @@
 class Note:
-    def __init__(self, note_id, title, body, tages=None):
+    def __init__(self, note_id, title, body, tags=None, created=None):
         self.note_id = note_id
         self.title = title
         self.body = body
         self.tags = tags or []
+        self.created = created
 
     def edit(self):
         pass

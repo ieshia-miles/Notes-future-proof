@@ -1,4 +1,7 @@
 import os
+from notes.note import Note
+from notes.parser import parse_note_text
+
 
 class NotesCollection:
     def __init__(self, notes_dir):
@@ -17,12 +20,22 @@ class NotesCollection:
         pass
 
     def list_notes(self):
-        #return or print a list of notes
-        pass
+        #return a list of notes (filenames without .note)
+        all_notes = os.listdir(self.notes_dir)
+        note_ids = []
+        for note in all_notes:
+            if note.endswith(".note"):
+                note_id = note[:-5]
+                note_ids.append(note_id)
+        return note_ids
 
-    #?
     def get_note(self, note_id):
-        pass
+        #load a .note file from disk, parse, then return a Note object
+        raw_text = self.load_note_text(note_id)
+        metadata_dict, body_text = parse_note_text(raw_text)
+        note = Note(note_id=note_id, title=metadata_dict["title"], body=body_text,
+                    tags=metadata_dict.get("tags"), created=metadata_dict.get("created"))
+        return note
 
     def create_note(self):
         title = input("Title: ")

@@ -1,19 +1,25 @@
 import sys
 #import yaml
 import argparse
-from notes.operations import (help_mesg,
-                              list_files,
-                              tag_search,
-                              read_note,
-                              collect_note_from_user,
-                              create_note,
-                              save_note,
-                              edit_note,
-                              delete_note,
-                              search_query,
-                              note_stats)
+from notes_config import notes_dir
+# from notes.operations import (help_mesg,
+#                               list_files,
+#                               tag_search,
+#                               read_note,
+#                               collect_note_from_user,
+#                               create_note,
+#                               save_note,
+#                               edit_note,
+#                               delete_note,
+#                               search_query,
+#                               note_stats)
 
 #cmd = command
+"""
+def display_menu:
+print("==Command Menu===")
+print("Choose:")
+"""
 
 def main():
     if len(sys.argv) > 1:
