@@ -20,12 +20,12 @@ class NotesCollection:
         pass
 
     def list_notes(self):
-        #return a list of notes (filenames without .note)
+        #return a list of notes (filenames/note_ids without .note)
         all_notes = os.listdir(self.notes_dir)
         note_ids = []
         for note in all_notes:
             if note.endswith(".note"):
-                note_id = note[:-5]
+                note_id = note[:-5] #strip .note
                 note_ids.append(note_id)
         return note_ids
 
