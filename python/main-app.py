@@ -4,64 +4,98 @@ from config.notes_config import notes_dir
 
 #cmd = command
 
-def display_menu():
-    print("==Command Menu===")
-    print("Choose and option by selecting a number")
-    print("1. List Notes")
-    print("2. Read a note")
-    print("3. Quit")
+def display_note_details(note): #helper function
+    """Prints the details of a Note object in a consistent way"""
+    print(f"Title: {note.title}")
+    tags = note.tags or []
+    print(f"Tags: {','.join(tags)}")
+    print(f"Created on: {note.created}")
+    print("-" * 40)
+    print(note.body)
 
-    choice = input("Choose and option:")
+def display_menu(collection):
+    while True:
+        print()
+        print("==Command Menu===")
+        print("Choose and option by selecting a number")
+        print("1. List Notes")
+        print("2. Read a note")
+        print("3. Quit")
 
-    if choice == "1":
-        collection = NotesCollection(notes_dir)
-        note_ids = collection.list_notes()
+        choice = input("Choose and option:")
 
-        if not note_ids:
-            print("No notes found in NotesLibrary")
-            return
-        note_ids = sorted(note_ids)
-        for index, note_id in enumerate(note_ids, start=1):
-            print(f"{index}.{note_id}")
+        if choice == "1":
+            note_ids = collection.list_notes()
+            if not note_ids:
+                print("No notes found in NotesLibrary")
+                return
+            note_ids = sorted(note_ids)
+            for index, note_id in enumerate(note_ids, start=1):
+                print(f"{index}.{note_id}")
+
+        elif choice == "2":
+            #ask user which note they want to read
+            note_id = input("Enter note id to read: ")
+            note = collection.get_note(note_id)
+            print() #add a blank line b4 showing the note
+            display_note_details(note)
+
+        elif choice == "3":
+            print("Goodbye!")
+            break #leaves the loop and returns to main()
+        else:
+            print("Invalid choice. Please enter 1, 2, ...")
+
+
+
 def main():
     collection = NotesCollection(notes_dir) #this creates Librarian
     if len(sys.argv) > 1:
         cmd = sys.argv[1]
         if cmd == '--help':
             help_message()
-        elif cmd == 'menu':
-            display_menu()
-        elif cmd == 'list':
-            collection = NotesCollection(notes_dir)
-            note_ids = collection.list_notes()
 
+        elif cmd == 'menu':
+            display_menu(collection)
+
+        elif cmd == 'list':
+            note_ids = collection.list_notes()
             if not note_ids:
                 print("No notes found in NotesLibrary.")
                 return
-
             noted_ids = sorted(note_ids)
-            #enemerate gives me both the number (index) and note_id.
+            #enumerate gives me both the number (index) and note_id.
             #start=1 makes the list count from 1 instead of 0
             for index, note_id in enumerate(note_ids, start=1):
                 print(f"{index}.{note_id}")
+
         elif cmd == 'tag':
             tag_search()
+
         elif cmd == 'read':
-            pass
+            #make sure user gave a note id. ex. main-app.py read grocery-list sys.argv[2] is grocery-list
+            if len(sys.argv) <3:
+                print("Error: Provide note id")
+                return
+            note_id = sys.argv[2]
+            note = collection.get_note(note_id)
+            print() #blank line for cleaner display
+            display_note_details(note)
+
         elif cmd == 'enter note':
             collect_note_from_user()
         elif cmd == 'create':
-            create_note()
+            pass
         elif cmd == 'save':
-            save_note()
+            pass
         elif cmd == 'edit':
-            edit_note()
+            pass
         elif cmd == 'delete':
-            delete_note(note_id)
+            pass
         elif cmd == 'search':
-            search_query()
+            pass
         elif cmd == 'stats':
-            note_stats()
+            pass
         else:
             print()
 
